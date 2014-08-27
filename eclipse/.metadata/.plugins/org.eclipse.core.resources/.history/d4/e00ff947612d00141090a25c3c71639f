@@ -1,0 +1,37 @@
+package messpace.ChildhoodToys.tileentity;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
+
+public class TileEntityGlowStick extends TileEntity{
+	
+	@Override
+	public void writeToNBT(NBTTagCompound par1)
+	{
+	   super.writeToNBT(par1);
+	   par1.setInteger("glowStick", glowStick);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound par1)
+	{
+	   super.readFromNBT(par1);
+	   this.glowStick = par1.getInteger("glowStick");
+	}
+	   
+	   public int glowStick;
+	   
+	   public Packet getDescriptionPacket() {
+	        NBTTagCompound nbtTag = new NBTTagCompound();
+	        this.writeToNBT(nbtTag);
+	        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+	        }
+
+	        public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
+	        readFromNBT(packet.customParam1);
+	        }
+	   
+	   
+
+}

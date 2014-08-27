@@ -1,0 +1,23 @@
+package messpace.ChildhoodToys.render;
+
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.world.World;
+
+public class TileEntityGlowStickRenderer extends TileEntitySpecialRenderer{
+
+	private final ModelGlowStick model;
+	
+	public TileEntityGlowStickRenderer() {
+		this.model = new ModelGlowStick();
+	}
+	
+	private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		GL11.glPushMatrix()
+		GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
+		GL11.glPopMatrix();
+	}
+	
+}
