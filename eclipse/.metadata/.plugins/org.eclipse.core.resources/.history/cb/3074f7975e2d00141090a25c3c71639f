@@ -1,5 +1,0 @@
-package messpace.ChildhoodToys.tileentity;
-
-public class TileEntityGlowStick extends TileEntity{
-
-}
